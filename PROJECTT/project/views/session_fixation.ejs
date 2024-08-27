@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session Fixation Vulnerability</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <h1>Session Fixation Vulnerability</h1>
+  <p>Session ID has been set. Check your cookies.</p>
+
+  <script>
+    // Lỗ hổng: Session Fixation
+    // Kẻ tấn công có thể thiết lập hoặc đoán đúng giá trị phiên người dùng để chiếm quyền truy cập vào tài khoản của họ.
+    // Kịch bản tấn công: Kẻ tấn công thiết lập một giá trị phiên đã biết trước (ví dụ: "123456") cho người dùng mục tiêu.
+    // Sau đó, kẻ tấn công gửi một liên kết chứa giá trị phiên này đến người dùng, khiến người dùng truy cập trang web với giá trị phiên đã được đặt sẵn.
+    // Khi người dùng xác thực, kẻ tấn công có thể sử dụng giá trị phiên này để chiếm quyền truy cập vào tài khoản của họ mà không cần phải xác thực lại.
+
+    // Đề xuất cải thiện: Sử dụng một hệ thống phiên ngắn hạn, phát sinh ngẫu nhiên và tái tạo sau khi người dùng xác thực.
+  </script>
+</body>
+</html>
